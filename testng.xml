@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="APITestingSuite" thread-count="2" parallel="tests">
+    <test name="BookStoreTest">
+        <parameter name="baseURL" value="https://bookstore.toolsqa.com"/>
+        <classes>
+            <class name="ge.tbc.testautomation.tests.RestAssuredExerciseTest">
+                <methods>
+                    <include name="getBooks"/>
+                    <include name="validateFirstTwoBooks"/>
+<!--                    <include name="validateBook"/>-->
+                    <include name="validateBookWithDataProvider"/>
+                    <include name="deleteBookUnauthorized"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="PetStoreTest">
+        <parameter name="baseURL" value="https://petstore.swagger.io"/>
+        <classes>
+            <class name="ge.tbc.testautomation.tests.RestAssuredExerciseTest">
+                <methods>
+                    <exclude name="getBooks"/>
+                    <exclude name="validateFirstTwoBooks"/>
+<!--                    <exclude name="validateBook"/>-->
+                    <exclude name="validateBookWithDataProvider"/>
+                    <exclude name="deleteBookUnauthorized"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
