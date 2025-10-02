@@ -1,5 +1,6 @@
 package ge.tbc.testautomation.data;
 
+import ge.tbc.testautomation.data.model.request.BookingRequest;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.DataProvider;
@@ -34,5 +35,30 @@ public class DataSupplier {
         }
 
         return data;
+    }
+
+    @DataProvider(name = "bookingData")
+    public Object[][] bookingData() {
+        BookingRequest.BookingDates dates = new BookingRequest.BookingDates()
+                .setCheckIn("2025-10-02")
+                .setCheckOut("2025-10-05");
+
+        BookingRequest req1 = new BookingRequest()
+                .setFirstName("John")
+                .setLastName("Doe")
+                .setTotalPrice(200)
+                .setDepositPaid(true)
+                .setBookingDates(dates)
+                .setAdditionalNeeds("Breakfast");
+
+        BookingRequest req2 = new BookingRequest()
+                .setFirstName("Jane")
+                .setLastName("Smith")
+                .setTotalPrice(500)
+                .setDepositPaid(false)
+                .setBookingDates(dates)
+                .setAdditionalNeeds("Dinner");
+
+        return new Object[][]{{req1}, {req2}};
     }
 }
