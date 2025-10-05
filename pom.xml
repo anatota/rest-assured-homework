@@ -144,6 +144,29 @@
                         </configuration>
                     </execution>
                     <!--                <execution> Duplicate execution section to generate more api services -->
+                    <execution>
+                        <id>generate-auth-service-client-api-code</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/api-docs.yaml</inputSpec>
+                            <invokerPackage>ge.tbc.auth.invoker</invokerPackage>
+                            <apiPackage>ge.tbc.auth.api</apiPackage>
+                            <modelPackage>ge.tbc.auth.model</modelPackage>
+                            <generatorName>java</generatorName>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <output>${project.build.directory}/generated-sources/openapi-auth</output>
+                            <additionalProperties>hideGenerationTimestamp=true</additionalProperties>
+                            <configOptions>
+                                <library>rest-assured</library>
+                                <serializationLibrary>jackson</serializationLibrary>
+                                <useJakartaEe>true</useJakartaEe>
+                            </configOptions>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
